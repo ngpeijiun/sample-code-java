@@ -28,9 +28,9 @@ public class SetExample {
 
         NavigableSet<Object> navigableSet = new TreeSet<>();
 
-        // Concurrent (immutable)
+        // Concurrent (read-copy-update)
 
-        Set<Object> immutableSet = new CopyOnWriteArraySet<>();
+        Set<Object> readCopyUpdateSet = new CopyOnWriteArraySet<>();
 
         // Concurrent Ordered (non-blocking)
 

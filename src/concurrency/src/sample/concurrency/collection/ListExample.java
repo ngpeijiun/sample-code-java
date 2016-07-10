@@ -15,9 +15,9 @@ public class ListExample {
 
         List<Object> moreWriteThanReadList = new LinkedList<>();
 
-        // Concurrent (immutable)
+        // Concurrent (read-copy-update)
 
-        List<Object> immutableList = new CopyOnWriteArrayList<>();
+        List<Object> readCopyUpdateList = new CopyOnWriteArrayList<>();
 
         // Concurrent Brute Force
 

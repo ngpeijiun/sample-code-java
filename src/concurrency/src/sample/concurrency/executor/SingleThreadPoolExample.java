@@ -7,9 +7,11 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by eugenis on 27/4/16.
  */
-public class ExecutorExample {
+public class SingleThreadPoolExample {
 
     public static void main(String[] args) {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+
         Runnable task = () -> {
             try {
                 String name = Thread.currentThread().getName();
@@ -20,8 +22,6 @@ public class ExecutorExample {
                 e.printStackTrace();
             }
         };
-
-        ExecutorService executor = Executors.newSingleThreadExecutor();
 
         executor.submit(task);
 

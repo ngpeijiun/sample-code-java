@@ -5,7 +5,7 @@ package sample.concurrency.thread;
  */
 public class MessageLoop implements Runnable {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         long patience = 10000;
 
         if (args.length > 0) {
@@ -35,16 +35,20 @@ public class MessageLoop implements Runnable {
         threadMessage("Waiting for MessageLoop thread to finish");
 
         while (t.isAlive()) {
-            threadMessage("String waiting...");
+            try {
+                threadMessage("String waiting...");
 
-            t.join(1000);
+                t.join(1000);
 
-            if ((System.currentTimeMillis() - startTime) > patience && t.isAlive()) {
-                threadMessage("Tired of waiting!");
+                if ((System.currentTimeMillis() - startTime) > patience && t.isAlive()) {
+                    threadMessage("Tired of waiting!");
 
-                t.interrupt();
+                    t.interrupt();
 
-                t.join();
+                    t.join();
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
 

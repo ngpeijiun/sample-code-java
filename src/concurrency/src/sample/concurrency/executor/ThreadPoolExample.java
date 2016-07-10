@@ -8,6 +8,8 @@ import java.util.concurrent.*;
 public class ThreadPoolExample {
 
     public static void main(String[] args) {
+        ExecutorService executor = Executors.newFixedThreadPool(10);
+
         Callable<Integer> task = () -> {
             try {
                 TimeUnit.SECONDS.sleep(3);
@@ -17,21 +19,17 @@ public class ThreadPoolExample {
             }
         };
 
-        ExecutorService executor = Executors.newFixedThreadPool(1);
-
         Future<Integer> future = executor.submit(task);
 
         try {
             System.out.format("future done? %b%n", future.isDone());
 
             Integer result;
-
             try {
                 result = future.get(1, TimeUnit.SECONDS);
             } catch (TimeoutException e) {
                 System.out.println("get future timeout");
             }
-
             result = future.get();
 
             System.out.format("future done? %b%n", future.isDone());
@@ -39,6 +37,8 @@ public class ThreadPoolExample {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        executor.shutdown();
     }
 
 }

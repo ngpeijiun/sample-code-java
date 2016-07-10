@@ -41,7 +41,7 @@ public class QueueExample {
 
         // Concurrent FIFO (non-blocking)
 
-        Queue<Object> queue = new ConcurrentLinkedQueue<>();
+        Queue<Object> nonBlockingQueue = new ConcurrentLinkedQueue<>();
 
         // Concurrent FIFO + LIFO (blocking)
 
